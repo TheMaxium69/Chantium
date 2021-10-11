@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CardController!{% endblock %}
+
+{% block body %}
+
+    <form>
+            <legend>Exemple</legend>
+            <select name="pets" id="pet-select">
+                <option value="">--Please choose an option--</option>
+
+                {% for project in projects %}
+
+                    <option value="{{ project.id }}">{{ project.adresse }}</option>
+                {% endfor %}
+            </select>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title Point">
+                <div id="emailHelp" class="form-text">Maxime tournier est un bg ffait attentions</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+    {{ form_start(formProject) }}
+
+        <input class="btn btn-success" type="submit" value="Créer">
+
+    {{ form_end(formProject) }}
+{% endblock %}

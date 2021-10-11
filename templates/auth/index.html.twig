@@ -3,18 +3,21 @@
 {% block title %}Hello AuthController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container text-white d-block">
+        <h1>Connect</h1>
+        <form class="form-group" method="POST">
+            <div class="mb-3">
+                <label for="username">Username</label>
+                <input name="_username" id="pseudo" class="form-control" type="text" placeholder="username">
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input name="_password" class="form-control" type="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success">Log-In</button>
+        </form>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Github/BatirPositifSymfony/src/Controller/AuthController.php'|file_link(0) }}">src/Controller/AuthController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Github/BatirPositifSymfony/templates/auth/index.html.twig'|file_link(0) }}">templates/auth/index.html.twig</a></code></li>
-    </ul>
-</div>
+
 {% endblock %}

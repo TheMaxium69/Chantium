@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('projectCreate') }}">Creer un chantier</a>
+
+    <div class="row">
+        {% for project in projects %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.adresse}}</h5>
+                    <p class="card-text">{{ project.client }}</p>
+                    <a href="{{ path('projectShow', {id : project.id }) }}" class="btn btn-info">Allez sur les dossiers du chantier</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

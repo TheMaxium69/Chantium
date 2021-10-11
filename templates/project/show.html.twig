@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.adresse}}</h5>
+                    <p class="card-text">{{ project.client }}</p>
+                </div>
+
+
+    <a href="{{ path('card') }}" class="btn btn-info">Faire un contrendu</a>
+{% endblock %}
