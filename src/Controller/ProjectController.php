@@ -7,6 +7,7 @@ use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +21,11 @@ class ProjectController extends AbstractController
     {
         $AllProject = $projectRepository->findAll();
 
+        $user = $this->getUser();
+
         return $this->render('project/index.html.twig', [
             'projects' => $AllProject,
+            'user' => $user
         ]);
     }
 
@@ -37,6 +41,16 @@ class ProjectController extends AbstractController
         $form->handleRequest($laRequete);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $imgSend = $form->get('img')->getData();
+
+            try {
+                $newNameImage = uniqid() . "." . $imgSend->guessExtension();
+                $imgSend->move($this->getParameter('images_projects'), $newNameImage);
+                //$project->setImg($newNameImage);
+
+            } catch (FileException $e) {
+                throw $e;
+            }
 
             $manager->persist($project);
             $manager->flush();
@@ -54,11 +68,13 @@ class ProjectController extends AbstractController
     /**
      * @Route("/project/show/{id}", name="projectShow")
      */
-    public function show(Project $project): Response
+    public function show(Project $project, ProjectRepository $projectRepository): Response
     {
+        $AllProject = $projectRepository->findAll();
 
         return $this->render('project/show.html.twig', [
-            'project' => $project
+            'projects' => $AllProject,
+            'projectshow' => $project
         ]);
     }
 

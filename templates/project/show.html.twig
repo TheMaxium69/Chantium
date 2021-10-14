@@ -4,11 +4,51 @@
 
 {% block body %}
 
-                <div class="card-body">
-                    <h5 class="card-title">{{ project.adresse}}</h5>
-                    <p class="card-text">{{ project.client }}</p>
+
+    <div style="width: 100%">
+        <div class="row" style="width: 100%">
+            <div class="col-2 m-4" >
+                <nav class="nav flex-column">
+                    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+
+                        <a class="navbar-brand" href="#">Outils</a>
+                        <nav class="nav nav-pills flex-column">
+                            <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                            <a class="nav-link " href="{{ path('home') }}">Notifications</a>
+                            <a class="nav-link " href="{{ path('logout') }}">Deconnections</a>
+                        </nav>
+                        <a class="navbar-brand" href="#">Chantier</a>
+                        <nav class="nav nav-pills flex-column">
+                            {% for project in projects %}
+
+                                {% if project == projectshow %}
+                                    <a class="nav-link active" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                                    <nav class="nav nav-pills flex-column">
+                                        <a class="nav-link ms-3 my-1" href="#item-1-1">Image</a>
+                                        <a class="nav-link ms-3 my-1" href="#item-1-2">Rapport</a>
+                                    </nav>
+                                {% else %}
+
+                                    <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+
+                                {% endif %}
+                            {% endfor %}
+                        </nav>
+                    </nav>
+                </nav>
+            </div>
+            <section class="col-9">
+                <div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ projectshow.adresse}}</h5>
+                        <p class="card-text">{{ projectshow.client }}</p>
+                    </div>
+
+
+                    <a href="{{ path('card') }}" class="btn btn-info">Faire un contrendu</a>
                 </div>
+            </section>
+        </div>
+    </div>
 
-
-    <a href="{{ path('card') }}" class="btn btn-info">Faire un contrendu</a>
 {% endblock %}

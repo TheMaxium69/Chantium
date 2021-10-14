@@ -3,18 +3,37 @@
 {% block title %}Hello ProjectController!{% endblock %}
 
 {% block body %}
+    <div style="width: 100%">
+        <div class="row" style="width: 100%">
+            <div class="col-2 m-4" >
+                <nav class="nav flex-column">
+                    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+                        <a class="navbar-brand" href="#">Outils</a>
+                        <nav class="nav nav-pills flex-column">
+                            <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
+                            <a class="nav-link " href="{{ path('home') }}">Notifications</a>
+                            <a class="nav-link " href="{{ path('logout') }}">Deconnections</a>
+                        </nav>
+                        <a class="navbar-brand" href="#">Chantier</a>
+                        <nav class="nav nav-pills flex-column">
 
-    <a href="{{ path('projectCreate') }}">Creer un chantier</a>
-
-    <div class="row">
-        {% for project in projects %}
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ project.adresse}}</h5>
-                    <p class="card-text">{{ project.client }}</p>
-                    <a href="{{ path('projectShow', {id : project.id }) }}" class="btn btn-info">Allez sur les dossiers du chantier</a>
-                </div>
+                            {% for project in projects %}
+                                <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                            {% endfor %}
+                        </nav>
+                    </nav>
+                </nav>
             </div>
-        {% endfor %}
+            <section class="col-9">
+                <div>
+                    <h5>Coucou {{ user.firstname | capitalize }}</h5>
+
+
+
+                    <a class="btn btn-primary" href="{{ path('projectCreate') }}">Creer un chantier</a>
+                </div>
+            </section>
+        </div>
     </div>
+
 {% endblock %}
