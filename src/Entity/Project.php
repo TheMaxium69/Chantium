@@ -37,6 +37,11 @@ class Project
      */
     private $client;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="project", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Project
     public function setClient(string $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

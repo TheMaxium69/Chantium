@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
@@ -34,7 +35,8 @@ class ProjectController extends AbstractController
      */
     public function new(Project $project = null, Request $laRequete, EntityManagerInterface $manager) : Response
     {
-         $project = new Project();
+        $project = new Project();
+        $image = new Image();
 
         $form = $this->createForm(ProjectType::class, $project);
 
@@ -46,7 +48,10 @@ class ProjectController extends AbstractController
             try {
                 $newNameImage = uniqid() . "." . $imgSend->guessExtension();
                 $imgSend->move($this->getParameter('images_projects'), $newNameImage);
-                //$project->setImg($newNameImage);
+                $image->setUrl($newNameImage);
+                $manager->persist($image);
+                $manager->flush();
+                $project->setImage($image);
 
             } catch (FileException $e) {
                 throw $e;
@@ -77,6 +82,20 @@ class ProjectController extends AbstractController
             'projectshow' => $project
         ]);
     }
+
+    /**
+     * @Route("/project/img/{id}", name="projectImg")
+     */
+    public function img(Project $project, ProjectRepository $projectRepository): Response
+    {
+        $AllProject = $projectRepository->findAll();
+
+        return $this->render('project/image.html.twig', [
+            'projects' => $AllProject,
+            'projectshow' => $project
+        ]);
+    }
+
 
 
 

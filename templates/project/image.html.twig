@@ -22,9 +22,9 @@
                             {% for project in projects %}
 
                                 {% if project == projectshow %}
-                                    <a class="nav-link active" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                                    <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}"><u>{{ project.adresse | upper}}</u></a>
                                     <nav class="nav nav-pills flex-column">
-                                        <a class="nav-link ms-3 my-1" href="{{ path('projectImg', {id : project.id }) }}">Image</a>
+                                        <a class="nav-link ms-3 my-1 active" href="{{ path('projectImg', {id : project.id }) }}">Image</a>
                                         <a class="nav-link ms-3 my-1" href="#item-1-2">Rapport</a>
                                     </nav>
                                 {% else %}
@@ -40,19 +40,14 @@
             <section class="col-9">
                 <div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ projectshow.adresse}}</h5>
-                        <p class="card-text">{{ projectshow.client }}</p>
-
                         {% if projectshow.image %}
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="...">
-                        </div>
-
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="...">
+                            </div>
+                        {% else %}
+                            <p>Aucune image pour {{ projectshow.adresse }}</p>
                         {% endif %}
                     </div>
-
-
-                    <a href="{{ path('card') }}" class="btn btn-info">Faire un contrendu</a>
                 </div>
             </section>
         </div>
