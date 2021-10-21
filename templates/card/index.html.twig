@@ -1,25 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CardController!{% endblock %}
+{% block title %}Hello ProjectController!{% endblock %}
 
 {% block body %}
 
-    <form>
-            <legend>Exemple</legend>
-            <select name="pets" id="pet-select">
-                <option value="">--Please choose an option--</option>
 
-                {% for project in projects %}
+    <div style="width: 100%">
+        <div class="row" style="width: 100%">
+            <div class="col-2 m-4" >
+                <nav class="nav flex-column">
+                    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
 
-                    <option value="{{ project.id }}">{{ project.adresse }}</option>
-                {% endfor %}
-            </select>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title Point">
-                <div id="emailHelp" class="form-text">Maxime tournier est un bg ffait attentions</div>
+                        <a class="navbar-brand" href="#">Outils</a>
+                        <nav class="nav nav-pills flex-column">
+                            <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                            <a class="nav-link " href="{{ path('home') }}">Notifications</a>
+                            <a class="nav-link " href="{{ path('logout') }}">Deconnections</a>
+                        </nav>
+                        <a class="navbar-brand" href="#">Chantier</a>
+                        <nav class="nav nav-pills flex-column">
+                            {% for project in projects %}
+
+                                    <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+
+                            {% endfor %}
+                        </nav>
+                    </nav>
+                </nav>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <section class="col-9">
+                    <form>
+                            <legend>Exemple</legend>
+                            <select name="pets" id="pet-select">
+                                <option value="">--Please choose an option--</option>
 
-    </form>
+                                {% for project in projects %}
+
+                                    <option value="{{ project.id }}">{{ project.adresse }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title Point">
+                                <div id="emailHelp" class="form-text">Maxime tournier est un bg ffait attentions</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+            </section>
+        </div>
+    </div>
+
 {% endblock %}

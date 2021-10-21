@@ -20,7 +20,6 @@
                         <a class="navbar-brand" href="#">Chantier</a>
                         <nav class="nav nav-pills flex-column">
                             {% for project in projects %}
-
                                 {% if project == projectshow %}
                                     <a class="nav-link active" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
                                     <nav class="nav nav-pills flex-column">
@@ -38,22 +37,20 @@
                 </nav>
             </div>
             <section class="col-9">
-                <div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ projectshow.adresse}}</h5>
-                        <p class="card-text">{{ projectshow.client }}</p>
+                <form>
+                    <legend>Exemple</legend>
+                    <p>{{ projectshow.adresse }}</p>
 
-                        {% if projectshow.image %}
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="...">
-                        </div>
+                    <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
 
-                        {% endif %}
-                    </div>
+                    {% for i in 1..nb %}
+                        <input type="text" class="form-control" placeholder="test" name="test">
+                    {% endfor %}
 
+                    <button type="submit" class="btn btn-primary">Submit</button>
 
-                    <a href="{{ path('cardProject', {id : projectshow.id }) }}" class="btn btn-info">Faire un contrendu</a>
-                </div>
+                </form>
+
             </section>
         </div>
     </div>

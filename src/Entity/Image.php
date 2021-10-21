@@ -27,6 +27,11 @@ class Image
      */
     private $project;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Card::class, mappedBy="image", cascade={"persist", "remove"})
+     */
+    private $card;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +67,28 @@ class Image
         }
 
         $this->project = $project;
+
+        return $this;
+    }
+
+    public function getCard(): ?Card
+    {
+        return $this->card;
+    }
+
+    public function setCard(?Card $card): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($card === null && $this->card !== null) {
+            $this->card->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($card !== null && $card->getImage() !== $this) {
+            $card->setImage($this);
+        }
+
+        $this->card = $card;
 
         return $this;
     }
