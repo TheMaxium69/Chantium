@@ -22,10 +22,10 @@
                             {% for project in projects %}
 
                                 {% if project == projectshow %}
-                                    <a class="nav-link active" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                                    <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}"><u>{{ project.adresse | upper}}</u></a>
                                     <nav class="nav nav-pills flex-column">
                                         <a class="nav-link ms-3 my-1" href="{{ path('projectImg', {id : project.id }) }}">Image</a>
-                                        <a class="nav-link ms-3 my-1" href="{{ path('cardAll', {id : project.id }) }}">Rapport</a>
+                                        <a class="nav-link ms-3 my-1 active" href="{{ path('cardAll', {id : project.id }) }}">Rapport</a>
                                     </nav>
                                 {% else %}
 
@@ -39,20 +39,19 @@
             </div>
             <section class="col-9">
                 <div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ projectshow.adresse}}</h5>
-                        <p class="card-text">{{ projectshow.client }}</p>
+                    <h2>Tout tes rapport</h2>
+                    {% for card in cards %}
 
-                        {% if projectshow.image %}
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('uploads/images/projects/' ~ card.image.url) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ card.title }}</h5>
+                                <p class="card-text">{{ card.content }}</p>
+                                <p class="card-text" style="color: gray"> {{ card.createdAt | date("m/d/Y") }}</p>
+                            </div>
                         </div>
 
-                        {% endif %}
-                    </div>
-
-
-                    <a href="{{ path('cardProject', {id : projectshow.id }) }}" class="btn btn-info">Faire un contrendu</a>
+                    {% endfor %}
                 </div>
             </section>
         </div>

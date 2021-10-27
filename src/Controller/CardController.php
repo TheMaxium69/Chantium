@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Card;
 use App\Entity\Project;
+use App\Repository\CardRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,26 +51,40 @@ class CardController extends AbstractController
             return $this->redirect("http://localhost:8000/card/project/". $id);
 
         }else {
-
-            $nb = 3;
-
             $AllProject = $projectRepository->findAll();
 
             return $this->render('card/project.html.twig', [
                 'projects' => $AllProject,
-                'projectshow' => $project,
-                "nb" => $nb
+                'projectshow' => $project
             ]);
+        }
+    }
+
+    /**
+     * @Route("/cards/{id}", name="cardAll")
+     */
+    public function cards(Project $project, CardRepository $cardRepository, ProjectRepository $projectRepository): Response
+    {
+
+        $AllCard = $cardRepository->findAll();
+
+        $cards = [];
+
+        foreach($AllCard as $card){
+            $projectcard = $card->getProject();
+            if ($projectcard == $project){
+                array_push($cards, $card);
+            }
+
         }
 
 
+        $AllProject = $projectRepository->findAll();
 
-
-
-
-
-
-
+        return $this->render('card/show.html.twig', [
+            'projects' => $AllProject,
+            'projectshow' => $project,
+            'cards' => $cards,
+        ]);
     }
-
 }

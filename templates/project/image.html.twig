@@ -25,7 +25,7 @@
                                     <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}"><u>{{ project.adresse | upper}}</u></a>
                                     <nav class="nav nav-pills flex-column">
                                         <a class="nav-link ms-3 my-1 active" href="{{ path('projectImg', {id : project.id }) }}">Image</a>
-                                        <a class="nav-link ms-3 my-1" href="#item-1-2">Rapport</a>
+                                        <a class="nav-link ms-3 my-1" href="{{ path('cardAll', {id : project.id }) }}">Rapport</a>
                                     </nav>
                                 {% else %}
 
