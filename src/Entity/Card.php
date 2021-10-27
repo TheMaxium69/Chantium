@@ -38,6 +38,11 @@ class Card
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Card
     public function setImage(?Image $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

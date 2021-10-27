@@ -37,15 +37,18 @@
                 </nav>
             </div>
             <section class="col-9">
-                <form>
-                    <legend>Exemple</legend>
+                <form method="POST">
+                    <legend>Formaulire d'un Rapport</legend>
                     <p>{{ projectshow.adresse }}</p>
 
-                    <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
-
-                    {% for i in 1..nb %}
-                        <input type="text" class="form-control" placeholder="test" name="test">
-                    {% endfor %}
+                    <div class="mb-3">
+                        <label for="titleform" class="form-label">Titre du point</label>
+                        <input type="text" class="form-control" id="titleform" placeholder="Un Titre" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contentform" class="form-label">Decription point</label>
+                        <textarea class="form-control" id="contentform" rows="3" placeholder="Description" name="content"></textarea>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
 

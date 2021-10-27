@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Card;
 use App\Entity\Project;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,13 +31,27 @@ class CardController extends AbstractController
     public function cardProject(Project $project, ProjectRepository $projectRepository, Request $laRequete, EntityManagerInterface $manager): Response
     {
 
-        if (!empty($_GET['test']))
+        if (!empty($_POST['title']) && !empty($_POST['content']))
         {
-             dd($_GET['test']);
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $date = new \Datetime();
+            $image = $project->getImage();
+
+            $card = new Card();
+
+            $card->setTitle($title)->setContent($content)->setCreatedAt($date)->setProject($project)->setImage($image);
+
+            $manager->persist($card);
+            $manager->flush();
+
+            $id = $project->getId();
+
+            return $this->redirect("http://localhost:8000/card/project/". $id);
 
         }else {
 
-            $nb = 1;
+            $nb = 3;
 
             $AllProject = $projectRepository->findAll();
 
