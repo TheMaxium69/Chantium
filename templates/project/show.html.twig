@@ -47,7 +47,13 @@
 
                     <hr>
                     <p>Tu peut faire un rapport si desous</p>
-                    <a href="{{ path('cardProject', {id : projectshow.id }) }}" class="btn btn-primary">Faire un rapport</a>
+                    <a class="btn btn-primary col-5" href="{{ path('cardProject', {id : projectshow.id }) }}">Faire un rapport</a>
+                    <br><br>
+                    <p>Tu peut aussi retrouvrez toute les images du project ici</p>
+                    <a class="btn btn-primary col-5" href="{{ path('projectImg', {id : projectshow.id }) }}">Tout les Image</a>
+                    <br><br>
+                    <p>Tu peut voir tout les points de rapport dans cette page</p>
+                    <a class="btn btn-primary col-5" href="{{ path('projectImg', {id : projectshow.id }) }}">Tout les rapports</a>
                 </div>
             </section>
         </div>

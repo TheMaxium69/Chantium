@@ -32,9 +32,16 @@
                         <h5 class="">Coucou {{ user.firstname | capitalize }} <br>
                         Bienvenue sur Chantium</h5>
                     </article>
+                    <hr>
 
                     <p>Sur le bouton si tu dessus du peut créer ton chantier</p>
-                    <a class="btn btn-primary" href="{{ path('projectCreate') }}">Creer un chantier</a>
+                    <a class="btn btn-primary col-5" href="{{ path('projectCreate') }}">Creer un chantier</a>
+                    <br><br>
+                    <p>Vous pouvez retrouvez tout vos chantier ici</p>
+                    <div class="row"></div>
+                    {% for project in projects %}
+                        <a class="btn btn-primary col-5" style="margin: 20px" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                    {% endfor %}
                 </div>
             </section>
         </div>
