@@ -1,3 +1,3 @@
-# BatirPositifSymfony
+# Chantium
 
- App Symfony, Back-End Batir Positif
+App Symfony, Application Web de Gestion Chantier
