@@ -25,11 +25,11 @@
                 </nav>
             </div>
             <section class="col-9">
-                <div>
-                    <h5>Coucou {{ user.firstname | capitalize }}</h5>
+                <div class="container">
+                    <h5 class="py-5 text-center ">Coucou {{ user.firstname | capitalize }}</h5>
 
 
-
+                    <p>Sur le bouton si tu dessus du peut créer ton chantier</p>
                     <a class="btn btn-primary" href="{{ path('projectCreate') }}">Creer un chantier</a>
                 </div>
             </section>

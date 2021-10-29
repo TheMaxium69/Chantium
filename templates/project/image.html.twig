@@ -42,13 +42,15 @@
                     <div class="card-body row">
                         {% if projectshow.image %}
                             <div class="card" style="width: 18rem;">
-                                <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('uploads/images/projects/' ~ projectshow.image.url) }}" class="card-img-top" alt="">
+                                <p>{{ projectshow.image.url }}</p>
                             </div>
 
                             {% if projectshow.cards %}
                                 {% for card in projectshow.cards %}
                                     <div class="card" style="width: 18rem;">
                                         <img src="{{ asset('uploads/images/cards/' ~ card.image.url) }}" class="card-img-top" alt="...">
+                                        <p>{{ card.image.url }}</p>
                                     </div>
                                 {% endfor %}
                             {% endif%}
