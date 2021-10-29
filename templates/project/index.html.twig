@@ -26,8 +26,12 @@
             </div>
             <section class="col-9">
                 <div class="container">
-                    <h5 class="py-5 text-center ">Coucou {{ user.firstname | capitalize }}</h5>
+                    <article class="text-center py-5">
+                        <img width="70px" height="70px" src="https://tyrolium.fr/Contenu/Image/Chantium.png">
 
+                        <h5 class="">Coucou {{ user.firstname | capitalize }} <br>
+                        Bienvenue sur Chantium</h5>
+                    </article>
 
                     <p>Sur le bouton si tu dessus du peut créer ton chantier</p>
                     <a class="btn btn-primary" href="{{ path('projectCreate') }}">Creer un chantier</a>
