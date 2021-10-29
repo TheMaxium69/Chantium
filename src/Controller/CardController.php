@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Card;
+use App\Entity\Image;
 use App\Entity\Project;
+use App\Form\CardType;
 use App\Repository\CardRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,30 +35,51 @@ class CardController extends AbstractController
     public function cardProject(Project $project, ProjectRepository $projectRepository, Request $laRequete, EntityManagerInterface $manager): Response
     {
 
-        if (!empty($_POST['title']) && !empty($_POST['content']))
+        $card = new Card();
+        $image = new Image();
+        $date = new \Datetime();
+
+        $form = $this->createForm(CardType::class, $card);
+
+        $form->handleRequest($laRequete);
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $title = $_POST['title'];
-            $content = $_POST['content'];
-            $date = new \Datetime();
-            $image = $project->getImage();
+            $imgSend = $form->get('img')->getData();
 
-            $card = new Card();
+            try {
+                $newNameImage = uniqid() . "." . $imgSend->guessExtension();
+                $imgSend->move($this->getParameter('images_cards'), $newNameImage);
+                $image->setUrl($newNameImage);
+                $manager->persist($image);
+                $manager->flush();
 
-            $card->setTitle($title)->setContent($content)->setCreatedAt($date)->setProject($project)->setImage($image);
 
-            $manager->persist($card);
-            $manager->flush();
+                $card->setImage($image);
+                $card->setProject($project);
+                $card->setCreatedAt($date);
 
-            $id = $project->getId();
+                $manager->persist($card);
+                $manager->flush();
 
-            return $this->redirect("http://localhost:8000/card/project/". $id);
+
+                $id = $project->getId();
+
+                return $this->redirect("http://localhost:8000/card/project/". $id);
+
+            } catch (FileException $e) {
+                throw $e;
+
+                dd("erreur". $e);
+            }
+
 
         }else {
             $AllProject = $projectRepository->findAll();
 
             return $this->render('card/project.html.twig', [
                 'projects' => $AllProject,
-                'projectshow' => $project
+                'projectshow' => $project,
+                'formCard' => $form->createView()
             ]);
         }
     }

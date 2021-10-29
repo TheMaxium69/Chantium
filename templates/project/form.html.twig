@@ -3,9 +3,35 @@
 {% block title %}Hello ProjectController!{% endblock %}
 
 {% block body %}
-    {{ form_start(formProject) }}
+    <div style="width: 100%">
+        <div class="row" style="width: 100%">
+            <div class="col-2 m-4" >
+                <nav class="nav flex-column">
+                    <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column align-items-stretch p-3">
+                        <a class="navbar-brand" href="#">Outils</a>
+                        <nav class="nav nav-pills flex-column">
+                            <a class="nav-link active" href="{{ path('home') }}">Accueil</a>
+                            <a class="nav-link " href="{{ path('home') }}">Notifications</a>
+                            <a class="nav-link " href="{{ path('logout') }}">Deconnections</a>
+                        </nav>
+                        <a class="navbar-brand" href="#">Chantier</a>
+                        <nav class="nav nav-pills flex-column">
 
-        <input class="btn btn-success" type="submit" value="Créer">
+                            {% for project in projects %}
+                                <a class="nav-link" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
+                            {% endfor %}
+                        </nav>
+                    </nav>
+                </nav>
+            </div>
+            <section class="col-9">
+                {{ form_start(formProject) }}
 
-    {{ form_end(formProject) }}
+                <input class="btn btn-primary" type="submit" value="Créer">
+
+                {{ form_end(formProject) }}
+            </section>
+        </div>
+    </div>
+
 {% endblock %}

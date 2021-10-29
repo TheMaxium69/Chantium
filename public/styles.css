@@ -1,0 +1,23 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: green;
+}
+
+.nav-link{
+    color: green;
+}
+
+.nav-link:hover{
+    color: #00BAEE;
+}
+
+.btn-primary {
+    color: black;
+    background-color: #00BAEE;
+    border-color: #00BAEE;
+}
+
+.btn-primary:hover{
+    color: #fff;
+    background-color: green;
+    border-color: green;
+}

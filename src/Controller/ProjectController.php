@@ -33,7 +33,7 @@ class ProjectController extends AbstractController
     /**
      * @Route("/home/create/", name="projectCreate")
      */
-    public function new(Project $project = null, Request $laRequete, EntityManagerInterface $manager) : Response
+    public function new(Project $project = null, ProjectRepository $projectRepository, Request $laRequete, EntityManagerInterface $manager) : Response
     {
         $project = new Project();
         $image = new Image();
@@ -62,7 +62,11 @@ class ProjectController extends AbstractController
 
             return $this->redirectToRoute('home');
         }else {
+
+            $AllProject = $projectRepository->findAll();
+
             return $this->render('project/form.html.twig', [
+                'projects' => $AllProject,
                 'formProject' => $form->createView()
             ]);
         }

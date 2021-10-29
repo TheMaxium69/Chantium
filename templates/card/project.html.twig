@@ -24,7 +24,7 @@
                                     <a class="nav-link active" href="{{ path('projectShow', {id : project.id }) }}">{{ project.adresse}}</a>
                                     <nav class="nav nav-pills flex-column">
                                         <a class="nav-link ms-3 my-1" href="{{ path('projectImg', {id : project.id }) }}">Image</a>
-                                        <a class="nav-link ms-3 my-1" href="#item-1-2">Rapport</a>
+                                        <a class="nav-link ms-3 my-1" href="{{ path('cardAll', {id : project.id }) }}">Rapport</a>
                                     </nav>
                                 {% else %}
 
@@ -37,23 +37,14 @@
                 </nav>
             </div>
             <section class="col-9">
-                <form method="POST">
                     <legend>Formaulire d'un Rapport</legend>
                     <p>{{ projectshow.adresse }}</p>
 
-                    <div class="mb-3">
-                        <label for="titleform" class="form-label">Titre du point</label>
-                        <input type="text" class="form-control" id="titleform" placeholder="Un Titre" name="title">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contentform" class="form-label">Decription point</label>
-                        <textarea class="form-control" id="contentform" rows="3" placeholder="Description" name="content"></textarea>
-                    </div>
+                    {{ form_start(formCard) }}
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <input class="btn btn-primary" type="submit" value="Envoyé">
 
-                </form>
-
+                    {{ form_end(formCard) }}
             </section>
         </div>
     </div>

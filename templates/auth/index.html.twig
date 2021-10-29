@@ -4,18 +4,17 @@
 
 {% block body %}
 
-    <div class="container text-white d-block">
-        <h1>Connect</h1>
+    <div class="container text-dark d-block py-5">
         <form class="form-group" method="POST">
             <div class="mb-3">
-                <label for="username">Username</label>
-                <input name="_username" id="pseudo" class="form-control" type="text" placeholder="username">
+                <label for="username">Pseudo</label>
+                <input name="_username" id="pseudo" class="form-control" type="text" placeholder="prenom.nom">
             </div>
             <div class="mb-3">
-                <label for="password">Password</label>
-                <input name="_password" class="form-control" type="password" placeholder="Password">
+                <label for="password">Mot de passe</label>
+                <input name="_password" class="form-control" type="password" placeholder="password">
             </div>
-            <button type="submit" class="btn btn-success">Log-In</button>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
     </div>
 
