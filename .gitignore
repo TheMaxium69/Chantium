@@ -1,6 +1,7 @@
 .env
 .env.test
 .idea/
+.migrations
 
 ###> symfony/framework-bundle ###
 /.env.local
