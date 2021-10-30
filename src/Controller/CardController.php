@@ -64,7 +64,7 @@ class CardController extends AbstractController
 
                 $id = $project->getId();
 
-                return $this->redirect("http://localhost:8000/card/project/". $id);
+                return $this->redirect("/card/project/". $id . "?isvalide=true&name=" . $card->getTitle());
 
             } catch (FileException $e) {
                 throw $e;
