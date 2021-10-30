@@ -37,6 +37,13 @@
                 </nav>
             </div>
             <section class="col-9">
+                {% if isValide %}
+                    <div class="alert alert-success" role="alert">
+                        Le point "{{ title | capitalize }}" à bien été créer
+                        tu peut le retrouver dans la section <a href="{{ path('cardAll', {id : projectshow.id }) }}">Rapport</a>
+                    </div>
+                {% endif %}
+
                     <legend>Formaulire d'un Rapport</legend>
                     <p>{{ projectshow.adresse }}</p>
 

@@ -29,24 +29,29 @@
                 </nav>
             </div>
             <section class="col-9">
-                    <form>
-                            <legend>Exemple</legend>
-                            <select name="pets" id="pet-select">
-                                <option value="">--Please choose an option--</option>
+
+                        {% if isValide %}
+                            <div class="alert alert-success" role="alert">
+                                Le point "{{ title | capitalize }}" à bien été créer
+                                tu peut le retrouver dans la section <a href="{{ path('cardAll', {id : projectshow.id }) }}">Rapport</a>
+                            </div>
+                        {% endif %}
+
+                        <legend>Formaulire d'un Rapport</legend>
+
+                        {{ form_start(formCard) }}
+                            <select name="id" id="pet-select">
+                                <option value="">--Choisi ton chantier--</option>
 
                                 {% for project in projects %}
 
                                     <option value="{{ project.id }}">{{ project.adresse }}</option>
                                 {% endfor %}
                             </select>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Chant au hasard</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title Point">
-                                <div id="emailHelp" class="form-text">Maxime tournier est un bg ffait attentions</div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
 
-                    </form>
+                        <input class="btn btn-primary" type="submit" value="Envoyé">
+
+                        {{ form_end(formCard) }}
             </section>
         </div>
     </div>
