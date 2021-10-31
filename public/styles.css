@@ -21,3 +21,35 @@
     background-color: green;
     border-color: green;
 }
+
+.navbar-collapsemax{
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+@media (max-width: 991px) {
+    .nav-link{
+        color: red;
+    }
+
+    div.col-2.m-4{
+        display: none;
+    }
+
+    section.col-9{
+        flex: unset;
+        width: 100%;
+    }
+
+    .btn{
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse{
+        display: none;
+        flex-basis: unset;
+    }
+}
