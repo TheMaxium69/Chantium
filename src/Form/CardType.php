@@ -20,7 +20,7 @@ class CardType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '20048k',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpg',
