@@ -91,8 +91,7 @@ class CardController extends AbstractController
         $form = $this->createForm(CardType::class, $card);
 
         $form->handleRequest($laRequete);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $imgSend = $form->get('img')->getData();
 
             try {
@@ -113,16 +112,16 @@ class CardController extends AbstractController
 
                 $id = $project->getId();
 
-                return $this->redirect("/card/project/". $id . "?isvalide=true&name=" . $card->getTitle());
+                return $this->redirect("/card/project/" . $id . "?isvalide=true&name=" . $card->getTitle());
 
             } catch (FileException $e) {
                 throw $e;
 
-                dd("erreur". $e);
+                dd("erreur" . $e);
             }
 
 
-        }else if (!empty($_GET['isvalide'])) {
+        } else if (!empty($_GET['isvalide'])) {
 
             $isValide = $_GET['isvalide'];
             $title = $_GET['name'];
@@ -171,5 +170,62 @@ class CardController extends AbstractController
             'projectshow' => $project,
             'cards' => $cards,
         ]);
+    }
+
+    /**
+     * @Route("/card/{id}", name="cardEdit")
+     */
+    public function cardedit(Card $card, ProjectRepository $projectRepository, Request $laRequete, EntityManagerInterface $manager): Response
+    {
+        $image = new Image();
+        $date = new \Datetime();
+
+        $AllProject = $projectRepository->findAll();
+        $project = $card->getProject();
+
+
+        $form = $this->createForm(CardType::class, $card);
+
+        $form->handleRequest($laRequete);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $imgSend = $form->get('img')->getData();
+
+            try {
+                $newNameImage = uniqid() . "." . $imgSend->guessExtension();
+                $imgSend->move($this->getParameter('images_cards'), $newNameImage);
+                $image->setUrl($newNameImage);
+                $manager->persist($image);
+                $manager->flush();
+
+
+                $card->setImage($image);
+                $card->setProject($project);
+                $card->setCreatedAt($date);
+
+                $manager->persist($card);
+                $manager->flush();
+
+
+                $id = $project->getId();
+
+                return $this->redirect("/card/project/". $id . "?isvalide=edit&name=" . $card->getTitle());
+
+            } catch (FileException $e) {
+                throw $e;
+
+                dd("erreur". $e);
+            }
+
+        } else {
+
+            return $this->render('card/project.html.twig', [
+                'projects' => $AllProject,
+                'projectshow' => $project,
+                'formCard' => $form->createView(),
+                'isValide' => null
+            ]);
+        }
     }
 }

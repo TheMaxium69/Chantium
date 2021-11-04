@@ -48,6 +48,7 @@
                                 <h5 class="card-title">{{ card.title }}</h5>
                                 <p class="card-text">{{ card.content }}</p>
                                 <p class="card-text" style="color: gray"> {{ card.createdAt | date("m/d/Y") }}</p>
+                                <a href="{{ path('cardEdit', {id : card.id }) }}" class="btn btn-primary">Edit</a>
                             </div>
                         </div>
 

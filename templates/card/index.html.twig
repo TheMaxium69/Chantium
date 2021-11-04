@@ -2,6 +2,8 @@
 
 {% block title %}Hello ProjectController!{% endblock %}
 
+{% form_theme formCard 'bootstrap_5_layout.html.twig' %}
+
 {% block body %}
 
 
@@ -40,16 +42,30 @@
                         <legend>Formaulire d'un Rapport</legend>
 
                         {{ form_start(formCard) }}
-                            <select name="id" id="pet-select">
+
+                        <div class="form-control">
+
+                            <select name="id" class="form-select" aria-label="Default select example">
                                 <option value="">--Choisi ton chantier--</option>
-
                                 {% for project in projects %}
-
                                     <option value="{{ project.id }}">{{ project.adresse }}</option>
                                 {% endfor %}
                             </select>
+    
+                            {{ form_label(formCard.title, 'Titre') }}
+                            {{ form_widget(formCard.title) }}
 
-                        <input class="btn btn-primary" type="submit" value="Envoyé">
+                            {{ form_label(formCard.content, 'Descriptions') }}
+                            {{ form_widget(formCard.content) }}
+
+                            {{ form_label(formCard.img, 'Image') }}
+                            {{ form_widget(formCard.img) }}
+
+                            <br>
+
+                            <input class="btn btn-primary" style="width: 100%" type="submit" value="Envoyé">
+
+                        </div>
 
                         {{ form_end(formCard) }}
             </section>
