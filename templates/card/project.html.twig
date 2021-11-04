@@ -2,6 +2,8 @@
 
 {% block title %}Hello ProjectController!{% endblock %}
 
+{% form_theme formCard 'bootstrap_5_layout.html.twig' %}
+
 {% block body %}
 
 
@@ -48,6 +50,12 @@
                     <p>{{ projectshow.adresse }}</p>
 
                     {{ form_start(formCard) }}
+
+                    {{ form_row(formCard.title) }}
+
+                    {{ form_row(formCard.content) }}
+
+                    {{ form_row(formCard.img) }}
 
                     <input class="btn btn-primary" type="submit" value="Envoyé">
 

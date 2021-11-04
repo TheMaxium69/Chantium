@@ -2,6 +2,8 @@
 
 {% block title %}Hello ProjectController!{% endblock %}
 
+{% form_theme formProject 'bootstrap_5_layout.html.twig' %}
+
 {% block body %}
     <div style="width: 100%">
         <div class="row" style="width: 100%">
@@ -26,6 +28,15 @@
             </div>
             <section class="col-9">
                 {{ form_start(formProject) }}
+
+                {{ form_row(formProject.adresse) }}
+
+                {{ form_row(formProject.client) }}
+
+                {{ form_row(formProject.img) }}
+
+                {{ form_row(formProject.datestart) }}
+                {{ form_row(formProject.dateend) }}
 
                 <input class="btn btn-primary" type="submit" value="Créer">
 
