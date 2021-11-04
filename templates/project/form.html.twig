@@ -29,16 +29,45 @@
             <section class="col-9">
                 {{ form_start(formProject) }}
 
-                {{ form_row(formProject.adresse) }}
+                <div class="form-control">
+                    {{ form_label(formProject.adresse, 'Adresse du chantier') }}
+                    {{ form_widget(formProject.adresse) }}
 
-                {{ form_row(formProject.client) }}
+                    {{ form_label(formProject.client, 'Nom du client') }}
+                    {{ form_widget(formProject.client) }}
 
-                {{ form_row(formProject.img) }}
+                    {{ form_label(formProject.img, 'Image') }}
+                    {{ form_widget(formProject.img) }}
 
-                {{ form_row(formProject.datestart) }}
-                {{ form_row(formProject.dateend) }}
+                    <div class="row">
 
-                <input class="btn btn-primary" type="submit" value="Créer">
+                        <div class="col-6">
+                            {{ form_label(formProject.datestart, 'Date de début') }}
+                            {{ form_widget(formProject.datestart) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_label(formProject.dateend, 'Date de Fin') }}
+                            {{ form_widget(formProject.dateend) }}
+                        </div>
+
+                    </div>
+
+                    <style>
+                         #project_datestart_time_hour,
+                         #project_datestart_time_minute,
+                         #project_dateend_time_hour,
+                         #project_dateend_time_minute,
+                         span.input-group-text
+                         {
+                            display: none;
+                        }
+                    </style>
+
+                    <br>
+
+                    <input class="btn btn-primary" style="width: 100%" type="submit" value="Créer">
+
+                </div>
 
                 {{ form_end(formProject) }}
             </section>

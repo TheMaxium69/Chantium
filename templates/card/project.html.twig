@@ -51,13 +51,21 @@
 
                     {{ form_start(formCard) }}
 
-                    {{ form_row(formCard.title) }}
+                    <div class="form-control">
+                        {{ form_label(formCard.title, 'Titre') }}
+                        {{ form_widget(formCard.title) }}
 
-                    {{ form_row(formCard.content) }}
+                        {{ form_label(formCard.content, 'Descriptions') }}
+                        {{ form_widget(formCard.content) }}
 
-                    {{ form_row(formCard.img) }}
+                        {{ form_label(formCard.img, 'Image') }}
+                        {{ form_widget(formCard.img) }}
 
-                    <input class="btn btn-primary" type="submit" value="Envoyé">
+                        <br>
+
+                        <input class="btn btn-primary" style="width: 100%" type="submit" value="Envoyé">
+
+                    </div>
 
                     {{ form_end(formCard) }}
             </section>
