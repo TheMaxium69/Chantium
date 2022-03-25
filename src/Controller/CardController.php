@@ -173,6 +173,16 @@ class CardController extends AbstractController
     }
 
     /**
+     * @Route("/cards/delete/{id}", name="cardDelete")
+     */
+    public function cardDelete(Card $card, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($card);
+        $manager->flush();
+        return $this->redirectToRoute('card');
+    }
+
+    /**
      * @Route("/card/{id}", name="cardEdit")
      */
     public function cardedit(Card $card, ProjectRepository $projectRepository, Request $laRequete, EntityManagerInterface $manager): Response
